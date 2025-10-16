@@ -1,0 +1,13 @@
+{
+  "name": "prima-donna-coffee",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "stripe": "^16.6.0"
+  }
+}

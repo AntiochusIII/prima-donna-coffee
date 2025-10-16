@@ -1,0 +1,72 @@
+/* Prima Donna Coffee — modern aesthetic */
+:root {
+  --bg:#0f1115;
+  --panel:#131821;
+  --text:#e7e9ee;
+  --muted:#9aa3af;
+  --brand:#d98f5f; /* caramel */
+  --accent:#ffd6ad;
+  --stroke:#212735;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(60% 60% at 10% 10%, rgba(217,143,95,.12), transparent 60%),
+    radial-gradient(60% 60% at 90% 10%, rgba(255,214,173,.10), transparent 60%),
+    #0b0e13;
+}
+.container{max-width:1100px;margin:0 auto;padding:0 1rem}
+.site-header{position:sticky;top:0;background:rgba(10,12,16,.65);backdrop-filter:blur(8px);border-bottom:1px solid var(--stroke);z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:800;letter-spacing:.5px;text-decoration:none;color:var(--text)}
+.brand span{color:var(--brand)}
+.nav-links{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+.nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:.9}
+.nav a.active,.nav a:hover{color:var(--accent)}
+.badge{background:var(--brand);color:#111;padding:0 .4rem;border-radius:999px;font-size:.8rem;margin-left:.25rem}
+.icon-btn{background:transparent;border:1px solid var(--stroke);color:var(--text);padding:.4rem .6rem;border-radius:10px;cursor:pointer}
+
+.hero{padding:4rem 0;border-bottom:1px solid var(--stroke)}
+.hero__content{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center}
+.hero__text h1{font-size:3rem;margin:.25rem 0}
+.hero__text p{color:var(--muted);max-width:50ch}
+.hero__art img{width:100%;border-radius:16px;border:1px solid var(--stroke);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+
+.promo{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem auto}
+.card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:1rem}
+.glass{background:linear-gradient(180deg, rgba(19,24,33,.7), rgba(19,24,33,.55));backdrop-filter: blur(6px)}
+
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0}
+.product{display:flex;flex-direction:column;gap:.5rem;border:1px solid var(--stroke);border-radius:16px;padding:1rem;background:var(--panel)}
+.product img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--stroke)}
+.product h3{margin:.25rem 0}
+.meta{display:flex;align-items:center;justify-content:space-between;color:var(--muted)}
+.price{font-weight:800;color:var(--accent)}
+.qty-controls{display:inline-flex;align-items:center;gap:.5rem}
+.qty{width:3.25rem;border:1px solid var(--stroke);background:#0a0d13;color:var(--text);border-radius:8px;padding:.35rem .5rem}
+
+.cart{display:grid;gap:.75rem}
+.cart-item{display:grid;grid-template-columns:1fr auto auto auto;gap:.75rem;align-items:center;border-bottom:1px dashed var(--stroke);padding:.5rem 0}
+.cart-total{display:flex;justify-content:flex-end;gap:1rem;font-weight:800}
+.checkout-cta{margin-top:1rem}
+
+.story{display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem;margin:2rem auto}
+.story__img{width:100%;border-radius:16px;border:1px solid var(--stroke)}
+.status{color:var(--muted)}
+
+.btn{border:1px solid var(--stroke);background:#131821;color:var(--text);padding:.6rem 1rem;border-radius:12px;cursor:pointer}
+.btn-primary{background:linear-gradient(180deg, var(--brand), #c47646);color:#111;border:none;font-weight:800}
+.btn:hover{filter:brightness(1.05)}
+
+.site-footer{border-top:1px solid var(--stroke);margin-top:2rem}
+.footer__content{display:flex;justify-content:space-between;align-items:center;min-height:72px}
+
+@media (max-width: 900px){
+  .hero__content{grid-template-columns:1fr}
+  .story{grid-template-columns:1fr}
+  .promo{grid-template-columns:1fr}
+}

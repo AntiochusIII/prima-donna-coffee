@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Prima Donna Coffee</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script type="module" src="../js/login-page.js" defer></script>
+</head>
+<body>
+  <header class="site-header shadow">
+    <nav class="container nav">
+      <a class="brand" href="/">Prima Donna <span>Coffee</span></a>
+      <ul class="nav-links">
+        <li><a href="/pages/story.html">Our Story</a></li>
+        <li><a href="/pages/products.html">Products</a></li>
+        <li><a class="active" href="/pages/login.html">Login</a></li>
+        <li><a href="/pages/cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
+      </ul>
+      <button id="modeToggle" class="icon-btn">🌗</button>
+    </nav>
+  </header>
+
+  <main class="container card">
+    <h1>Login</h1>
+    <p>Use Google to sign in so we can offer faster checkout (including Google Pay via Stripe).</p>
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+         data-context="signin"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large"></div>
+    <pre id="loginStatus" class="status"></pre>
+  </main>
+</body>
+</html>
