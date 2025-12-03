@@ -115,10 +115,43 @@ html.light .qty-controls button {
   border-color:var(--stroke);
 }
 
-.cart{display:grid;gap:.75rem}
-.cart-item{display:grid;grid-template-columns:1fr auto auto auto;gap:.75rem;align-items:center;border-bottom:1px dashed var(--stroke);padding:.5rem 0}
-.cart-total{display:flex;justify-content:flex-end;gap:1rem;font-weight:800}
-.checkout-cta{margin-top:1rem}
+/* Cart layout – desktop / default */
+.cart {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Each cart item as its own mini card, works in dark + light */
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+
+  background: var(--panel);        /* dark panel in dark mode, cream in light */
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+}
+
+/* Make sure text is bright and readable in dark mode */
+.cart-item span {
+  color: var(--text);
+}
+
+/* Total row under the items */
+.cart-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+
+.checkout-cta {
+  margin-top: 1rem;
+}
+
 
 .story{display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem;margin:2rem auto}
 .story__img{width:100%;border-radius:16px;border:1px solid var(--stroke)}
@@ -347,58 +380,65 @@ html.light .product-toolbar select{
 }
 
 
-/* Mobile cart layout fix  */
+/* Mobile cart layout fix */
 @media (max-width: 700px) {
 
   .cart-item {
-    display: flex;               /* override desktop grid */
-    flex-direction: column;
-    padding: 1rem;
+    /* override desktop grid */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "name   name"
+      "qty    price"
+      "remove remove";
+
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
     margin-bottom: 0.75rem;
+
+    /* nice card that works in light + dark */
+    background: var(--panel);
     border: 1px solid var(--stroke);
-    border-radius: 0.5rem;
-    background: var(--surface, #fff);
-    gap: 0.5rem;
+    border-radius: 0.75rem;
+
+    color: var(--text);
   }
 
-  /* Top line: product name / description */
+  /* Top: product name */
   .cart-item > :first-child {
+    text-align: center;
+    grid-area: name;
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem;
   }
 
-  /* Middle: quantity + price + total in one row */
-  .cart-item-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    width: 100%;
-    flex-wrap: wrap; /* just in case, keeps it inside box */
-  }
-
-  .cart-item .qty-controls {
+  /* Middle left: quantity controls (- number +) */
+  .cart-item .qty-controls,
+  .cart-item > :nth-child(2) {
+    grid-area: qty;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.4rem;
+    justify-self: flex-start;
   }
 
-  /* Price and total aligned right */
-  .cart-price,
-  .cart-total {
+  /* Middle right: Price */
+  .cart-item > :nth-child(3) {
+    grid-area: price;
     text-align: right;
-    min-width: 3.5rem;
+    justify-self: flex-end;
+    font-weight: 500;
   }
 
-  /* Bottom: remove button stays inside card, left aligned */
+  /* Bottom right: Remove button */
   .cart-item button {
-    align-self: flex-end;
+    grid-area: remove;
+    justify-self: flex-end;
     margin-top: 0.25rem;
     width: auto;
   }
 }
-
-
 
 /* Mobile-friendly product toolbar layout */
 @media (max-width: 700px) {
