@@ -322,3 +322,81 @@ html.light .product-toolbar select{
   }
 }
 
+/* Mobile layout for Our Story section */
+@media (max-width: 700px) {
+  .story {
+    grid-template-columns: 1fr;   /* stack image and text */
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .story__img {
+    max-width: 260px;
+    margin: 0 auto;              /* center the portrait */
+    display: block;
+  }
+
+  .story h2,
+  .story h1 {
+    font-size: 1.9rem;
+    line-height: 1.1;
+  }
+
+  .story p {
+    font-size: 0.96rem;
+  }
+}
+
+/* Header / nav tweaks for small screens */
+@media (max-width: 700px) {
+  .nav {
+    flex-wrap: wrap;
+    height: auto;
+    row-gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .brand {
+    flex: 1 0 100%;          /* brand on its own line */
+    font-size: 1.05rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile cart layout */
+@media (max-width: 700px) {
+  .cart-item {
+    grid-template-columns: 1fr;   /* stack name, controls, remove */
+    row-gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .cart-item button {
+    width: auto;
+  }
+
+  .cart-total {
+    justify-content: space-between;
+    padding-top: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .checkout-cta {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .checkout-cta .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
