@@ -1,0 +1,5 @@
+{
+  "showFreeShippingBanner": true,
+  "freeShippingThreshold": 3500,
+  "defaultRoastFilter": "all"
+}

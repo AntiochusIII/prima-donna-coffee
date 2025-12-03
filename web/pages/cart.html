@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cart — Prima Donna Coffee</title>
   <link rel="stylesheet" href="../css/site.css">
+  <script type="module" src="../js/main.js" defer></script>
   <script type="module" src="../js/cart-page.js" defer></script>
 </head>
 <body>
   <header class="site-header shadow">
     <nav class="container nav">
-      <a class="brand" href="/">Prima Donna <span>Coffee</span></a>
+      <a class="brand" href="../index.html">Prima Donna <span>Coffee</span></a>
       <ul class="nav-links">
-        <li><a href="/pages/story.html">Our Story</a></li>
-        <li><a href="/pages/products.html">Products</a></li>
-        <li><a href="/pages/login.html">Login</a></li>
-        <li><a class="active" href="/pages/cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
+        <li><a href="story.html">Our Story</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a class="active" href="cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
       </ul>
       <button id="modeToggle" class="icon-btn">🌗</button>
     </nav>
@@ -24,10 +25,12 @@
   <main class="container">
     <h1>Your Cart</h1>
     <div id="cartView" class="cart card"></div>
-    <div class="checkout-cta">
+<div class="checkout-cta">
       <button id="checkoutBtn" class="btn btn-primary">Checkout with Stripe</button>
+      <button id="clearCart" class="btn" type="button">Clear all</button>
       <p id="checkoutStatus" class="status"></p>
     </div>
+
   </main>
 </body>
 </html>

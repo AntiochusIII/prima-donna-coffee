@@ -1,0 +1,29 @@
+[
+  {
+    "id": "house-blend",
+    "name": "Prima Donna House Blend",
+    "description": "Balanced, chocolatey medium roast built for daily diva energy.",
+    "roast": "Medium",
+    "price": 1699,
+    "image": "coffee.jpg",
+    "stripePrice": "price_house_blend"
+  },
+  {
+    "id": "night-owl",
+    "name": "Night Owl Dark Roast",
+    "description": "Smoky, bold espresso blend for late-night scheming and side hustles.",
+    "roast": "Dark",
+    "price": 1899,
+    "image": "coffee.jpg",
+    "stripePrice": "price_night_owl"
+  },
+  {
+    "id": "sunrise",
+    "name": "Sunrise Light Roast",
+    "description": "Citrusy, bright light roast that tastes like catching your flight on time.",
+    "roast": "Light",
+    "price": 1799,
+    "image": "coffee.jpg",
+    "stripePrice": "price_sunrise"
+  }
+]

@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login — Prima Donna Coffee</title>
   <link rel="stylesheet" href="../css/site.css">
+  <script type="module" src="../js/main.js" defer></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script type="module" src="../js/login-page.js" defer></script>
 </head>
 <body>
   <header class="site-header shadow">
     <nav class="container nav">
-      <a class="brand" href="/">Prima Donna <span>Coffee</span></a>
+      <a class="brand" href="../index.html">Prima Donna <span>Coffee</span></a>
       <ul class="nav-links">
-        <li><a href="/pages/story.html">Our Story</a></li>
-        <li><a href="/pages/products.html">Products</a></li>
-        <li><a class="active" href="/pages/login.html">Login</a></li>
-        <li><a href="/pages/cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
+        <li><a href="story.html">Our Story</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a class="active" href="login.html">Login</a></li>
+        <li><a href="cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
       </ul>
       <button id="modeToggle" class="icon-btn">🌗</button>
     </nav>
@@ -32,6 +33,7 @@
     </div>
     <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large"></div>
     <pre id="loginStatus" class="status"></pre>
+    <button id="clearLoginStatus" class="btn" type="button">Clear status</button>
   </main>
 </body>
 </html>

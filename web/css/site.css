@@ -1,4 +1,4 @@
-/* Prima Donna Coffee — modern aesthetic */
+/* Prima Donna Coffee Colors */
 :root {
   --bg:#0f1115;
   --panel:#131821;
@@ -8,6 +8,24 @@
   --accent:#ffd6ad;
   --stroke:#212735;
 }
+
+/* Updated LATTE / COFFEE LIGHT MODE COLORS */
+html.light {
+  --bg:#f6eee7;       /* soft latte */
+  --panel:#fff8f1;    /* cream panel */
+  --text:#2b2119;     /* espresso text */
+  --muted:#7b6a58;    /* light roast muted text */
+  --brand:#b46a3c;    /* medium caramel */
+  --accent:#e89b54;   /* warm highlight */
+  --stroke:#e3c9b6;   /* light brown border */
+  background:#f6eee7;
+}
+html.light body {
+  background:#f6eee7;
+  color:var(--text);
+}
+
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -20,7 +38,23 @@ body{
     #0b0e13;
 }
 .container{max-width:1100px;margin:0 auto;padding:0 1rem}
-.site-header{position:sticky;top:0;background:rgba(10,12,16,.65);backdrop-filter:blur(8px);border-bottom:1px solid var(--stroke);z-index:10}
+
+/* OLD CODE — unchanged except new light-mode header color */
+.site-header{
+  position:sticky;
+  top:0;
+  background:rgba(10,12,16,.65);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--stroke);
+  z-index:10;
+}
+
+/* NEW LIGHT MODE HEADER (latte gradient, not grey!) */
+html.light .site-header{
+  background:linear-gradient(90deg,#f8e7d7,#e3c2a1);
+  border-bottom:1px solid #d3b397;
+}
+
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{font-weight:800;letter-spacing:.5px;text-decoration:none;color:var(--text)}
 .brand span{color:var(--brand)}
@@ -28,6 +62,13 @@ body{
 .nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:.9}
 .nav a.active,.nav a:hover{color:var(--accent)}
 .badge{background:var(--brand);color:#111;padding:0 .4rem;border-radius:999px;font-size:.8rem;margin-left:.25rem}
+/* Light theme cart counter bubble */
+html.light .badge {
+  background:#e8b07a;    /* warm latte caramel */
+  color:#2b2119;         /* espresso text */
+  border:1px solid #d3b397;
+}
+
 .icon-btn{background:transparent;border:1px solid var(--stroke);color:var(--text);padding:.4rem .6rem;border-radius:10px;cursor:pointer}
 
 .hero{padding:4rem 0;border-bottom:1px solid var(--stroke)}
@@ -39,8 +80,21 @@ body{
 .promo{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem auto}
 .card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:1rem}
 .glass{background:linear-gradient(180deg, rgba(19,24,33,.7), rgba(19,24,33,.55));backdrop-filter: blur(6px)}
+/* Light mode override so promo cards aren't grey slabs */
+html.light .glass {
+  background:linear-gradient(180deg,#fff8f1,#f2ddc8);
+  border-color:#e3c9b6;
+  backdrop-filter:none;
+}
 
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 320px)); /* max ~320px */
+  justify-content:center;  /* center 1–2 cards instead of stretching */
+  gap:1rem;
+  margin:1rem 0;
+}
+
 .product{display:flex;flex-direction:column;gap:.5rem;border:1px solid var(--stroke);border-radius:16px;padding:1rem;background:var(--panel)}
 .product img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--stroke)}
 .product h3{margin:.25rem 0}
@@ -48,6 +102,18 @@ body{
 .price{font-weight:800;color:var(--accent)}
 .qty-controls{display:inline-flex;align-items:center;gap:.5rem}
 .qty{width:3.25rem;border:1px solid var(--stroke);background:#0a0d13;color:var(--text);border-radius:8px;padding:.35rem .5rem}
+
+/* LIGHT MODE — qty & buttons readable */
+html.light .qty {
+  background:#fff8f1;
+  color:#2b2119;
+  border-color:var(--stroke);
+}
+html.light .qty-controls button {
+  background:#fff8f1;
+  color:#2b2119;
+  border-color:var(--stroke);
+}
 
 .cart{display:grid;gap:.75rem}
 .cart-item{display:grid;grid-template-columns:1fr auto auto auto;gap:.75rem;align-items:center;border-bottom:1px dashed var(--stroke);padding:.5rem 0}
@@ -58,15 +124,201 @@ body{
 .story__img{width:100%;border-radius:16px;border:1px solid var(--stroke)}
 .status{color:var(--muted)}
 
-.btn{border:1px solid var(--stroke);background:#131821;color:var(--text);padding:.6rem 1rem;border-radius:12px;cursor:pointer}
-.btn-primary{background:linear-gradient(180deg, var(--brand), #c47646);color:#111;border:none;font-weight:800}
+.btn{
+  border:1px solid var(--stroke);
+  background:#131821;
+  color:var(--text);
+  padding:.6rem 1rem;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* Dark-mode primary button */
+.btn-primary{
+  background:linear-gradient(180deg, var(--brand), #c47646);
+  color:#111;
+  border:none;
+  font-weight:800;
+}
+
+/* Light theme: all standard buttons (Clear all, Reset, etc.) */
+html.light .btn{
+  background:#fff8f1;          /* cream */
+  color:#2b2119;               /* espresso text */
+  border-color:#d3b397;        /* soft brown border */
+}
+
+/* Light theme: primary buttons */
+html.light .btn-primary{
+  background:linear-gradient(180deg,#e8b07a,#d99b5a);
+  color:#2b2119;
+  border:none;
+}
+
+/* Product toolbar Reset button colors*/
+html.light .product-toolbar button{
+  background:#fff8f1;
+  color:#2b2119;
+  border:1px solid #d3b397;
+  border-radius:12px;
+}
+
+/* Hover states */
+.btn:hover{
+  filter:brightness(1.05);
+}
+html.light .btn:hover,
+html.light .btn-primary:hover{
+  filter:brightness(1.07);
+}
+
+
+
+
+
+html.light .btn:hover {
+  filter:brightness(1.03);
+}
+/* Light theme primary buttons – caramel highlight */
+html.light .btn-primary {
+  background:linear-gradient(180deg,#d78a49,#c77436);
+  color:#2b2119;
+  border:none;
+}
+
+
 .btn:hover{filter:brightness(1.05)}
+
+/* ID selectors */
+#grid.product-grid { margin-top: 1rem; }
+#cartView.cart { margin-top: 1rem; }
+#checkoutBtn { margin-top: 0.5rem; }
+#navCartCount { font-weight: 700; }
+#loginStatus { min-height: 2.5rem; }
+
+/* Adjacent sibling selectors */
+.card + .card { margin-top: 0.0rem; }
+.product + .product { margin-top: 0rem; }
+.story p + p { margin-top: 0.75rem; }
+.cart-item + .cart-item { border-top: 1px dashed var(--stroke); }
+.status + .btn { margin-top: 0.75rem; }
+
+/* Pseudo-elements */
+.site-header::after {
+  content:'';
+  display:block;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--stroke), transparent);
+  opacity:.4;
+}
+.brand span::before {
+  content:'• ';
+}
+
+/* Extra toolbar styling */
+.product-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  align-items:center;
+  margin:1rem 0;
+}
+.product-toolbar label{
+  font-size:.9rem;
+  color:var(--muted);
+}
+.product-toolbar input,
+.product-toolbar select{
+  border:1px solid var(--stroke);
+  background:#0a0d13;
+  color:var(--text);
+  padding:.35rem .5rem;
+  border-radius:8px;
+}
+html.light .product-toolbar input,
+html.light .product-toolbar select{
+  background:#fff4e8;
+}
+
+/* Promo Card Uniformity*/
+.promo {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;
+}
+.promo .card {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:140px;
+}
+
+/* Normalize product card layout  */
+.product {
+  display:grid;
+  grid-template-rows:
+    auto   /* image */
+    auto   /* title */
+    minmax(4.2rem,auto) /* description (enough for 2–3 lines) */
+    auto   /* roast + price meta row */
+    auto;  /* qty controls + button row */
+  row-gap:.5rem;
+}
+.product .meta {
+  margin-top:0;
+}
+.product p {
+  margin:0;
+}
+.product h3 {
+  margin:.25rem 0 0;
+}
+.product .qty-controls {
+  margin-top:0;
+}
+
 
 .site-footer{border-top:1px solid var(--stroke);margin-top:2rem}
 .footer__content{display:flex;justify-content:space-between;align-items:center;min-height:72px}
 
-@media (max-width: 900px){
-  .hero__content{grid-template-columns:1fr}
-  .story{grid-template-columns:1fr}
-  .promo{grid-template-columns:1fr}
+/* Extra tuning for small screens (hero banner) */
+@media (max-width: 700px) {
+
+  .hero {
+    padding:2.5rem 1rem 3rem;   /* less vertical padding */
+  }
+
+  .hero__content {
+    grid-template-columns:1fr;
+    gap:1.5rem;
+    text-align:center;
+  }
+
+  /* Put the image above the text on phones */
+  .hero__art {
+    order:-1;
+    max-width:280px;
+    margin:0 auto;
+  }
+
+  .hero__art img {
+    box-shadow:0 12px 30px rgba(0,0,0,.25); /* softer shadow on mobile */
+  }
+
+  .hero__text h1 {
+    font-size:2.2rem;           /* smaller, fits better */
+    line-height:1.1;
+  }
+
+  .hero__text p {
+    font-size:.95rem;
+    margin-bottom:1.5rem;
+  }
+
+  /* Center the "Shop the Blends" button */
+  .hero .btn-primary {
+    display:inline-block;
+    margin:0 auto;
+  }
 }
+

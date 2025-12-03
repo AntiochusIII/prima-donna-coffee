@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Products — Prima Donna Coffee</title>
   <link rel="stylesheet" href="../css/site.css">
+  <script type="module" src="../js/main.js" defer></script>
   <script type="module" src="../js/products-page.js" defer></script>
 </head>
 <body>
   <header class="site-header shadow">
     <nav class="container nav">
-      <a class="brand" href="/">Prima Donna <span>Coffee</span></a>
+      <a class="brand" href="../index.html">Prima Donna <span>Coffee</span></a>
       <ul class="nav-links">
-        <li><a href="/pages/story.html">Our Story</a></li>
-        <li><a class="active" href="/pages/products.html">Products</a></li>
-        <li><a href="/pages/login.html">Login</a></li>
-        <li><a href="/pages/cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
+        <li><a href="story.html">Our Story</a></li>
+        <li><a class="active" href="products.html">Products</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
       </ul>
       <button id="modeToggle" class="icon-btn">🌗</button>
     </nav>
@@ -23,6 +24,28 @@
 
   <main class="container">
     <h1>Our Blends</h1>
+    <section class="product-toolbar">
+      <label for="roastFilter">Roast:</label>
+      <select id="roastFilter">
+        <option value="all">All</option>
+        <option value="Light">Light</option>
+        <option value="Medium">Medium</option>
+        <option value="Dark">Dark</option>
+      </select>
+
+      <label for="maxPrice">Max price ($):</label>
+      <input id="maxPrice" type="number" min="0" step="1" placeholder="No limit">
+
+      <label for="sortSelect">Sort by:</label>
+      <select id="sortSelect">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name">Name (A–Z)</option>
+      </select>
+
+      <button id="resetFilters" class="btn" type="button">Reset</button>
+    </section>
     <div id="grid" class="product-grid"></div>
   </main>
 

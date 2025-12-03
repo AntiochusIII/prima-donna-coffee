@@ -47,3 +47,12 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
     status.textContent = 'Checkout failed. Check server keys.';
   }
 });
+
+const clearBtn = document.getElementById('clearCart');
+if (clearBtn) {
+  clearBtn.addEventListener('click', () => {
+    cart.clear();
+    render();
+    status.textContent = 'Cart cleared.';
+  });
+}
