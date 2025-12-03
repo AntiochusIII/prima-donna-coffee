@@ -322,81 +322,191 @@ html.light .product-toolbar select{
   }
 }
 
-/* Mobile layout for Our Story section */
+/* Mobile-friendly layout for Our Story section */
 @media (max-width: 700px) {
   .story {
-    grid-template-columns: 1fr;   /* stack image and text */
+    display: flex;              /* override the grid */
+    flex-direction: column;     /* stack items vertically */
     gap: 1.5rem;
-    align-items: start;
+    align-items: center;
+    margin-top: 1.5rem;
   }
 
   .story__img {
-    max-width: 260px;
-    margin: 0 auto;              /* center the portrait */
+    width: 100%;
+    max-width: 260px;           /* nice portrait width */
+    margin: 0 auto;
     display: block;
   }
 
-  .story h2,
-  .story h1 {
-    font-size: 1.9rem;
-    line-height: 1.1;
-  }
-
-  .story p {
-    font-size: 0.96rem;
-  }
-}
-
-/* Header / nav tweaks for small screens */
-@media (max-width: 700px) {
-  .nav {
-    flex-wrap: wrap;
-    height: auto;
-    row-gap: 0.4rem;
-    padding: 0.35rem 0.75rem;
-  }
-
-  .brand {
-    flex: 1 0 100%;          /* brand on its own line */
-    font-size: 1.05rem;
-  }
-
-  .nav-links {
+  /* The text card on the right in desktop layout */
+  .story .card {
     width: 100%;
-    justify-content: space-between;
-    font-size: 0.95rem;
+    max-width: 480px;
   }
 }
 
-/* Mobile cart layout */
+
+/* Mobile cart layout fix  */
 @media (max-width: 700px) {
+
   .cart-item {
-    grid-template-columns: 1fr;   /* stack name, controls, remove */
-    row-gap: 0.5rem;
-    align-items: flex-start;
+    display: flex;               /* override desktop grid */
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--stroke);
+    border-radius: 0.5rem;
+    background: var(--surface, #fff);
+    gap: 0.5rem;
   }
 
+  /* Top line: product name / description */
+  .cart-item > :first-child {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Middle: quantity + price + total in one row */
+  .cart-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap; /* just in case, keeps it inside box */
+  }
+
+  .cart-item .qty-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  /* Price and total aligned right */
+  .cart-price,
+  .cart-total {
+    text-align: right;
+    min-width: 3.5rem;
+  }
+
+  /* Bottom: remove button stays inside card, left aligned */
   .cart-item button {
+    align-self: flex-end;
+    margin-top: 0.25rem;
     width: auto;
   }
+}
 
-  .cart-total {
-    justify-content: space-between;
-    padding-top: 1rem;
-    font-size: 1.05rem;
+
+
+/* Mobile-friendly product toolbar layout */
+@media (max-width: 700px) {
+  .product-toolbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "roast-label roast-input roast-input"
+      "price-label price-input price-input"
+      "sort-label  sort-input  reset";
+    column-gap: 0.5rem;
+    row-gap: 0.75rem;
+    align-items: center;
+    margin: 1rem 0;
   }
 
-  .checkout-cta {
-    margin-top: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  /* General label styling */
+  .product-toolbar label {
+    margin: 0;
+    font-size: 0.9rem;
   }
 
-  .checkout-cta .btn {
+  /* Map each control to a grid area */
+  .product-toolbar label[for="roastFilter"] {
+    grid-area: roast-label;
+  }
+  .product-toolbar #roastFilter {
+    grid-area: roast-input;
+  }
+
+  .product-toolbar label[for="maxPrice"] {
+    grid-area: price-label;
+  }
+  .product-toolbar #maxPrice {
+    grid-area: price-input;
+  }
+
+  .product-toolbar label[for="sortSelect"] {
+    grid-area: sort-label;
+  }
+  .product-toolbar #sortSelect {
+    grid-area: sort-input;
+  }
+
+  .product-toolbar #resetFilters {
+    grid-area: reset;
+    justify-self: end;      /* puts Reset to the right of Sort by */
+    white-space: nowrap;
+  }
+
+  .product-toolbar select,
+  .product-toolbar input {
     width: 100%;
-    text-align: center;
-    justify-content: center;
+    max-width: 100%;
   }
 }
+
+
+/* Mobile header layout */
+@media (max-width: 700px) {
+
+  /* Stack header content */
+  .site-header .nav {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    height: auto;
+    padding: 0.75rem 0;
+    gap: 0.75rem;
+    position: relative;   /* allow absolute positioning */
+  }
+
+  /* Center Prima Donna Coffee */
+  .site-header .brand {
+    width: 100%;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* 🌗 Dark Mode button on same line, pinned right */
+  .site-header #modeToggle {
+    position: absolute;
+    right: 1rem;         /* right edge */
+    top: 0.5rem;         /* same vertical line as brand */
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  /* Nav links row evenly spaced */
+  .site-header .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+  }
+
+  .site-header .nav-links li {
+    flex: 1;
+    text-align: center;
+    list-style: none;
+  }
+}
+
 
