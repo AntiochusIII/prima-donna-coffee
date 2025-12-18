@@ -3,10 +3,14 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Stripe from 'stripe';
 import dotenv from 'dotenv';
+import { OAuth2Client } from 'google-auth-library';
+import jwt from 'jsonwebtoken';
+
 dotenv.config();
 
 const app = express();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2024-06-20' });
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const webDir = path.join(__dirname, '../web');
@@ -65,6 +69,41 @@ app.post('/api/checkout', async (req, res) => {
     res.status(500).json({ error: 'stripe_failed' });
   }
 });
+
+// Google Sign-In
+app.post('/api/auth/google', async (req, res) => {
+  try {
+    const { credential } = req.body;
+    if (!credential) {
+      return res.status(400).json({ error: 'Missing credential' });
+    }
+
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const p = ticket.getPayload();
+
+    const user = {
+      googleId: p.sub,
+      email: p.email,
+      name: p.name,
+      picture: p.picture,
+    };
+
+    // Create Prima Donna session token
+    const token = jwt.sign(user, process.env.APP_JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
+    res.json({ token, user });
+  } catch (err) {
+    console.error('Google auth error:', err);
+    res.status(401).json({ error: 'Invalid Google credential' });
+  }
+});
+
 
 // Fallback
 app.get('*', (req,res)=> res.sendFile(path.join(webDir,'index.html')));
