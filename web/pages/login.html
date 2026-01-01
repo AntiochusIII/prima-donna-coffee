@@ -19,7 +19,36 @@
         <li><a class="active" href="login.html">Login</a></li>
         <li><a href="cart.html">Cart <span class="badge" id="navCartCount">0</span></a></li>
       </ul>
-      <button id="modeToggle" class="icon-btn">🌗</button>
+      <button id="modeToggle" class="icon-btn card-icon" title="Toggle theme" aria-label="Toggle theme">
+        <!-- ICED (light mode) -->
+        <svg class="card-svg theme-svg theme-svg--iced" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true" focusable="false">
+          <!-- straw -->
+          <path d="M14 3l-2 1 2 6"/>
+          <!-- lid -->
+          <path d="M7 8h10"/>
+          <!-- cup -->
+          <path d="M8 8h8l-1 12a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2L8 8z"/>
+          <!-- ice cubes -->
+          <path d="M10 11h2v2h-2z"/>
+          <path d="M13 12h2v2h-2z"/>
+          <path d="M11 14h2v2h-2z"/>
+        </svg>
+      
+        <!-- HOT (dark mode) -->
+        <svg class="card-svg theme-svg theme-svg--hot" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true" focusable="false">
+          <!-- steam -->
+          <path d="M9 3c1 1 1 2 0 3s-1 2 0 3"/>
+          <path d="M12 3c1 1 1 2 0 3s-1 2 0 3"/>
+          <path d="M15 3c1 1 1 2 0 3s-1 2 0 3"/>
+          <!-- mug -->
+          <path d="M6 9h10v7a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4V9z"/>
+          <path d="M16 10h2a2 2 0 0 1 0 4h-2"/>
+        </svg>
+      </button>
     </nav>
   </header>
 
@@ -27,7 +56,7 @@
     <h1>Login</h1>
     <p>Checkout Faster & More Securely. Use your Google account for one-click payment with Google Pay (via Stripe).</p>
     <div id="g_id_onload"
-         data-client_id="621977737144-7l4gtanqakaf9iimj4kg9bugqmvp1ipb.apps.googleusercontent.com"
+         data-client_id="557659522156-aodn7rso9kro03l20tamcp2750gtbo49.apps.googleusercontent.com"
          data-context="signin"
          data-ux_mode="popup"
          data-callback="handleCredentialResponse">

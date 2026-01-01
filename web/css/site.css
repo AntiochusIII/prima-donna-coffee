@@ -9,7 +9,7 @@
   --stroke:#212735;
 }
 
-/* Updated LATTE / COFFEE LIGHT MODE COLORS */
+
 html.light {
   --bg:#f6eee7;       /* soft latte */
   --panel:#fff8f1;    /* cream panel */
@@ -39,7 +39,7 @@ body{
 }
 .container{max-width:1100px;margin:0 auto;padding:0 1rem}
 
-/* OLD CODE — unchanged except new light-mode header color */
+
 .site-header{
   position:sticky;
   top:0;
@@ -56,7 +56,12 @@ html.light .site-header{
 }
 
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-weight:800;letter-spacing:.5px;text-decoration:none;color:var(--text)}
+.brand{  
+  font-weight:600;
+  letter-spacing:.5px;
+  text-decoration:none;
+  color:var(--text);
+}
 .brand span{color:var(--brand)}
 .nav-links{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
 .nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:.9}
@@ -69,7 +74,54 @@ html.light .badge {
   border:1px solid #d3b397;
 }
 
-.icon-btn{background:transparent;border:1px solid var(--stroke);color:var(--text);padding:.4rem .6rem;border-radius:10px;cursor:pointer}
+/* Theme toggle button styled to match promo-card icons */
+#modeToggle.icon-btn{
+  /* button behavior only */
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  display: inline-grid;
+  place-items: center;
+}
+
+
+/* Optional: same hover feel as cards */
+#modeToggle.icon-btn:hover{
+  filter: brightness(0.98);
+}
+html:not(.light) #modeToggle.icon-btn:hover{
+  filter: brightness(1.08);
+}
+
+/* --- Theme toggle coffee icons (SVG version: ONLY ONE SHOWS) --- */
+#modeToggle .theme-svg--iced { display: none; }
+#modeToggle .theme-svg--hot  { display: block; }  /* default = dark mode */
+
+html.light #modeToggle .theme-svg--iced { display: block; }
+html.light #modeToggle .theme-svg--hot  { display: none; }
+
+
+#modeToggle .theme-icon svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Dark mode default: show HOT */
+#modeToggle .theme-icon--dark{
+  display: inline-flex;
+}
+
+/* Light mode: show ICED, hide hot */
+html.light #modeToggle .theme-icon--light{
+  display: inline-flex;
+}
+html.light #modeToggle .theme-icon--dark{
+  display: none;
+}
+
 
 .hero{padding:4rem 0;border-bottom:1px solid var(--stroke)}
 .hero__content{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center}
@@ -274,17 +326,94 @@ html.light .product-toolbar select{
 }
 
 /* Promo Card Uniformity*/
-.promo {
+/* ===== Promo cards: SVG icon + title header styling ===== */
+.promo{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:1rem;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1.25rem;
+  margin:2.25rem auto;
 }
-.promo .card {
+
+/* Light mode cards: soft premium look like the mock */
+html.light .promo .card.glass{
+  background: linear-gradient(180deg, #fff8f1, #f2ddc8);
+  border: 1px solid #d3b397;
+  border-radius: 18px;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.06),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* Dark mode cards keep your glass look */
+html:not(.light) .promo .card.glass{
+  border-radius: 18px;
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* Icon + title row */
+.card-title{
   display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  min-height:140px;
+  align-items:center;
+  gap:.75rem;
+  margin:0 0 .65rem;
+  font-size:1.1rem;
+  font-weight:800;
+  letter-spacing:-.01em;
 }
+
+/* The little badge behind the SVG */
+.card-icon{
+  width:36px;
+  height:36px;
+  display:inline-grid;
+  place-items:center;
+  border-radius:12px;
+
+  /* Default (dark mode safe) */
+  background: rgba(217,143,95,.14);
+  border: 1px solid var(--stroke);
+  color: var(--accent);
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* Header theme toggle: blend into banner (no chip background) */
+.site-header #modeToggle.card-icon{
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+
+/* SVG sizing */
+.card-svg{
+  width:18px;
+  height:18px;
+  display:block;
+}
+
+/* Light mode badge: embossed like the mock */
+html.light .card-icon{
+  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
+  border: 1px solid rgba(43,33,25,.20);
+  color: #b46a3c;
+  box-shadow:
+    0 6px 12px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* Paragraph tone/spacing */
+.promo .card p{
+  margin:0;
+  line-height:1.45;
+}
+html.light .promo .card p{
+  color: rgba(43,33,25,.72);
+}
+
 
 /* Normalize product card layout  */
 .product {
@@ -525,9 +654,9 @@ html.light .product-toolbar select{
     position: absolute;
     right: 1rem;         /* right edge */
     top: 0.5rem;         /* same vertical line as brand */
-    background: none;
-    border: none;
-    font-size: 1.4rem;
+    background: unset;
+    border: unset;
+    font-size: inherit;
     cursor: pointer;
   }
 
@@ -547,6 +676,7 @@ html.light .product-toolbar select{
     text-align: center;
     list-style: none;
   }
+
 }
 
 
